@@ -1,7 +1,7 @@
 const urlUser = "http://localhost:8080/users/";
-const register = document.querySelector('.register')
-const wrapper = document.querySelector('.wrapper')
-const login = document.querySelector('.login-btn')
+// const register = document.querySelector('.register')
+// const wrapper = document.querySelector('.wrapper')
+// const login = document.querySelector('.login-btn')
 
 function getUser(url){
     let request = new XMLHttpRequest()
@@ -25,12 +25,13 @@ function postUser(url, name, email){
         request.setRequestHeader('Content-type', 'application/json')
         
         request.send(JSON.stringify(params))
-       
-        const err = request.response;
-        let objectErr = JSON.parse(err);
+    //    console.log(request)
+        // const err = request.response;
+        // console.log(err)
+        let objectErr = JSON.parse(request.response);
         
-        console.log(object.status);
-        if(objectErr.status != 201) throw objectErr;
+        // console.log(objectErr);
+        if(request.status != 201) throw objectErr;
     }catch(objectErr){
         throw JSON.parse(request.response)
     }
@@ -50,42 +51,17 @@ function getUserId(url, id){
 
 // console.log(getUserId(urlUser, 1))
 
+// function registerUser(){
+    
+// }
 
-register.addEventListener('click', function(event){
-    event.preventDefault()
-    const newName = document.querySelector('.name-input')
-    const newEmail = document.querySelector('.email-input')
+// function loginUser(){
+    
+// }
 
-    try{
-        postUser(urlUser, newName.value, newEmail.value)
-        
-        wrapper.innerHTML = `
-            <div class="alert alert-success visually-hidden" role="alert">
-                Cadastrado com Sucesso!
-            </div>
-        `
-    }catch(error){
-        console.log(error)
-        wrapper.innerHTML = `
-            <div class="alert alert-danger" role="alert">
-               Erro ao cadastrar ${error.title}
-            </div>
-        
-        `
-    }
-})
+// registerUser()
+// login()
 
-
-login.addEventListener('click', function(event){
-    event.preventDefault()
-    const id = document.querySelector('.id-input')
-    const emailLogin = document.querySelector('.email-input-login')
-
-    const userId = JSON.parse(getUserId(urlUser, id.value))
-    if(userId.id === Number(id.value) && userId.email === emailLogin.value ){
-        // window.location.href = "http://localhost:5500/src/cadastro.html"
-    }
-})
 
 
 
