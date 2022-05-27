@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/static/stylesheets/algaworks.min.css">
   <link rel="stylesheet" href="/static/stylesheets/application.css">
   <link rel="stylesheet" href="/static/stylesheets/vendors.min.css">
+  <link rel="stylesheet" href="/static/stylesheets/style.css">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,7 +23,7 @@
 <body class="aw-layout-simple-page">
   <div class="aw-layout-simple-page__container">
 
-<form>
+<form method="POST" action="#">
 	<div class="aw-simple-panel">
 		<img alt="TimeProject" class="logo" src="/static/images/logo-time-project-2-removebg-preview.png"/>
 		
@@ -32,16 +33,16 @@
 		
 		<div class="aw-simple-panel__box">
 			<div class="form-group  has-feedback">
-				<input type="text" class="form-control  input-lg" placeholder="Seu nome"/>
+				<input type="text"  class="form-control name-input input-lg" placeholder="Seu nome"/>
 				<span class="glyphicon  glyphicon-envelope  form-control-feedback" aria-hidden="true"></span>
 			</div>
 			
 			<div class="form-group  has-feedback">
-				<input type="email" class="form-control  input-lg" placeholder="Seu e-mail"/>
+				<input type="email" class="form-control  input-lg email-input" placeholder="Seu e-mail"/>
 				<span class="glyphicon  glyphicon-lock  form-control-feedback" aria-hidden="true"></span>
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn  btn-primary  btn-lg  aw-btn-full-width">Cadastra-se</button>
+				<button type="submit" class="btn  btn-primary register btn-lg  aw-btn-full-width">Cadastra-se</button>
 			</div>
 			
 			<div class="form-group clearfix">
@@ -55,12 +56,14 @@
 		</div>
 		
 		<div class="aw-simple-panel__footer">Já têm conta? <a href="login.html">Realizar login</a>.</div>
-	</div>
+        <div class="wrapper"></div>
+    </div>
 </form>
 
   </div>
 
-  <script src="static/javascripts/vendors.min.js"></script>
-  <script src="static/javascripts/algaworks.min.js"></script>
+  <script src="/static/javascripts/main.js"></script>
+  <script src="/static/javascripts/vendors.min.js"></script>
+  <script src="/static/javascripts/algaworks.min.js"></script>
 </body>
 </html>
