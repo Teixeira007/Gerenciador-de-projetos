@@ -1,13 +1,13 @@
 const urlUser = "http://localhost:8080/users/";
 const register = document.querySelector('.register')
 const wrapper = document.querySelector('.wrapper')
+const login = document.querySelector('.login-btn')
 
 function getUser(url){
     let request = new XMLHttpRequest()
     request.open("GET", url, false)
     request.send()
     return request.responseText;
-    
 }
 
 // getUser(urlUser)
@@ -25,13 +25,14 @@ function postUser(url, name, email){
         request.setRequestHeader('Content-type', 'application/json')
         
         request.send(JSON.stringify(params))
-        request.onload = function(){
-            console.log(request.responseText)
-        }
-        console.log(request)
-    }catch(error){
-        const erro = new Error('opa')
-        throw erro;
+       
+        const err = request.response;
+        let objectErr = JSON.parse(err);
+        
+        console.log(object.status);
+        if(objectErr.status != 201) throw objectErr;
+    }catch(objectErr){
+        throw JSON.parse(request.response)
     }
 
     return request.responseText;
@@ -39,6 +40,15 @@ function postUser(url, name, email){
 
 
 //console.log(getUser(urlUser))
+
+function getUserId(url, id){
+    let request = new XMLHttpRequest();
+    request.open("GET", `${url}${id}`, false);
+    request.send();
+    return request.responseText
+}
+
+// console.log(getUserId(urlUser, 1))
 
 
 register.addEventListener('click', function(event){
@@ -55,16 +65,29 @@ register.addEventListener('click', function(event){
             </div>
         `
     }catch(error){
-        console.log("Erro:",error)
+        console.log(error)
         wrapper.innerHTML = `
             <div class="alert alert-danger" role="alert">
-                A simple danger alert—check it out!
+               Erro ao cadastrar ${error.title}
             </div>
         
         `
     }
-    
 })
+
+
+login.addEventListener('click', function(event){
+    event.preventDefault()
+    const id = document.querySelector('.id-input')
+    const emailLogin = document.querySelector('.email-input-login')
+
+    const userId = JSON.parse(getUserId(urlUser, id.value))
+    if(userId.id === Number(id.value) && userId.email === emailLogin.value ){
+        // window.location.href = "http://localhost:5500/src/cadastro.html"
+    }
+})
+
+
 
 
 // criar()
