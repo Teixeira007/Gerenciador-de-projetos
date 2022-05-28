@@ -1,0 +1,8 @@
+.input-technology{
+    width: 40%;
+}
+
+.add-technology{
+    display: flex;
+    gap: 3rem;
+}

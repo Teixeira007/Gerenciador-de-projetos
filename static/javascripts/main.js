@@ -1,7 +1,5 @@
 const urlUser = "http://localhost:8080/users/";
-// const register = document.querySelector('.register')
-// const wrapper = document.querySelector('.wrapper')
-// const login = document.querySelector('.login-btn')
+const urlProject = "http://localhost:8080/projects/";
 
 function getUser(url){
     let request = new XMLHttpRequest()
@@ -10,7 +8,6 @@ function getUser(url){
     return request.responseText;
 }
 
-// getUser(urlUser)
 
 function postUser(url, name, email){
     const params = {
@@ -25,12 +22,8 @@ function postUser(url, name, email){
         request.setRequestHeader('Content-type', 'application/json')
         
         request.send(JSON.stringify(params))
-    //    console.log(request)
-        // const err = request.response;
-        // console.log(err)
         let objectErr = JSON.parse(request.response);
         
-        // console.log(objectErr);
         if(request.status != 201) throw objectErr;
     }catch(objectErr){
         throw JSON.parse(request.response)
@@ -40,30 +33,73 @@ function postUser(url, name, email){
 }
 
 
-//console.log(getUser(urlUser))
 
 function getUserId(url, id){
     let request = new XMLHttpRequest();
     request.open("GET", `${url}${id}`, false);
     request.send();
+
+    // const stringJSON = JSON.stringify(id)
+    // localStorage.setItem('key', stringJSON)
+
     return request.responseText
 }
 
-// console.log(getUserId(urlUser, 1))
 
-// function registerUser(){
+function postProject(url, name, idUser){
+    const params = {
+        name: name,
+        user: {
+            id: idUser
+        }
+    }
+
+    let request = new XMLHttpRequest();
+
+    try{
+        request.open("POST", url, false);
+        request.setRequestHeader('Content-type', 'application/json');
+        request.send(JSON.stringify(params));
+
+        let objectErr = JSON.parse(request.response);
+        if(request.status != 201) throw objectErr;
+    }catch(objectErr){
+        throw JSON.parse(request.response)
+    }
     
-// }
+    return request.responseText;
+   
+}
 
-// function loginUser(){
-    
-// }
+function postTechnology(url, name, idUser){
+    const params = {
+        name: name
+    }
 
-// registerUser()
-// login()
+    let request = new XMLHttpRequest();
 
+    try{
+        request.open("POST", url, false);
+        request.setRequestHeader('Content-type', 'application/json');
+        request.send(JSON.stringify(params))
 
+        let objectErr = JSON.parse(request.response);
+        if(request.status != 201) throw objectErr;
 
+    }catch(objectErr){
+        throw JSON.parse(request.response)
+    }
+
+    return request.responseText
+}
+
+function queryString(parameter){
+    let loc = location.search.substring(1, location.search.length)
+    // let param_value = false;
+    let params = loc.split("=");
+    let value = params[1];
+    return value
+}
 
 
 // criar()
