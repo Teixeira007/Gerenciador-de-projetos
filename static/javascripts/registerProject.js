@@ -4,31 +4,63 @@ const inputTechnology = document.querySelector('.input-technology')
 const btnAddtechnology = document.querySelector('.btn-submit-add-technology')
 const btnSaveProject = document.querySelector('.btn-submit-save-project')
 
-const projects = document.querySelector('.projects')
+const project = document.querySelector('.project')
+const wrapper = document.querySelector('.alert')
 
 
 btnSaveProject.addEventListener("click", function(event){
     event.preventDefault()
     // const urlTechnology = `${urlProject}`
-    const id = Number(queryString('id'));
+    let id = Number(queryString('id'));
     // console.log(id)
+    // const jsonObject = JSON.parse(getProjectByUser(urlProject, id));
+    // console.log(jsonObject[0].name)
     
     try{
         postProject(urlProject, inputName.value, id)
+
+        function intervalReload(){
+            location.reload();
+        }setInterval(intervalReload, 2000);
+
+        wrapper.innerHTML = `
+            <div class="alert alert-success visually-hidden" role="alert">
+                Projeto Criado com sucesso. Adicione as tecnologias que será utilizada.
+            </div>
+        `
     }catch(error){
-        // projects.innerHTML = `
-        //     <div class="col-sm-4">
+        wrapper.innerHTML = `
+            <div class="alert alert-danger" role="alert">
+               Erro ao cadastrar ${error.title}
+            </div>
         
-        //         <div class="aw-box">
-        //         <div class="aw-box__icon">
-        //             <i class="fa  fa-bank  fa-3x"></i>
-        //         </div>
-        //         <div class="aw-box__value">R$983.433,20</div>
-        //         <div class="aw-box__title">Faturamento total</div>
-        //         </div>
-        
-        //     </div>
-        // `
+        `
     }
 
 })
+
+function ListProjectsByUser(){
+    let id = Number(queryString('id'));
+    const jsonObject = JSON.parse(getProjectByUser(urlProject, id));
+    console.log(jsonObject)
+    for(let i=0; i< jsonObject.length;i++){
+        
+        project.innerHTML += `
+            <div class="col-sm-4">
+            
+                <div class="aw-box">
+                    <div class="aw-box__icon">
+                    <img src="/static/icons/icons8-grupo-de-projectos-48.png"/>
+
+                    </div>
+                    <div class="aw-box__value projects-name">${jsonObject[i].name}</div>
+                    <div class="aw-box__title"></div>
+                </div>
+            
+            </div>
+            `
+    }
+
+}
+
+ListProjectsByUser()

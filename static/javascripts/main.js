@@ -61,8 +61,10 @@ function postProject(url, name, idUser){
         request.setRequestHeader('Content-type', 'application/json');
         request.send(JSON.stringify(params));
 
+        console.log(request)
         let objectErr = JSON.parse(request.response);
-        if(request.status != 201) throw objectErr;
+        console.log(objectErr)
+        if(request.status != 201 && request.status != 200) throw objectErr;
     }catch(objectErr){
         throw JSON.parse(request.response)
     }
@@ -92,6 +94,17 @@ function postTechnology(url, name, idUser){
 
     return request.responseText
 }
+
+function getProjectByUser(url, idUser){
+    let request = new XMLHttpRequest();
+    request.open("GET", `${url}user/${idUser}`, false);
+    request.send();
+
+    // console.log(request.responseText);
+    return request.responseText
+}
+
+// getProjectByUser(urlProject, 2)
 
 function queryString(parameter){
     let loc = location.search.substring(1, location.search.length)
