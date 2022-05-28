@@ -5,7 +5,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.home.gerenciadordeprojetos.model.Project;
+import com.home.gerenciadordeprojetos.model.User;
 import com.home.gerenciadordeprojetos.repositories.ProjectRepository;
+import com.home.gerenciadordeprojetos.repositories.UserRepository;
 import com.home.gerenciadordeprojetos.service.ProjectService;
 
 import org.springframework.http.HttpStatus;
@@ -76,4 +78,11 @@ public class ProjectController {
         return ResponseEntity.noContent().build();
     }
     
+    @GetMapping("/user/{idUser}")
+    public List<Project> listProjectByUser(@PathVariable Long idUser){
+        return projectRepository.findAll().stream()
+        .filter(project -> project.getUser().getId().equals(idUser))
+        .toList();
+    
+    }
 }
