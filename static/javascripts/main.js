@@ -74,6 +74,7 @@ function postProject(url, name, idUser){
 }
 
 function postTechnology(url, name, idUser){
+    let urlTechnology = `${url}${idUser}/technologies`
     const params = {
         name: name
     }
@@ -81,7 +82,7 @@ function postTechnology(url, name, idUser){
     let request = new XMLHttpRequest();
 
     try{
-        request.open("POST", url, false);
+        request.open("POST", urlTechnology, false);
         request.setRequestHeader('Content-type', 'application/json');
         request.send(JSON.stringify(params))
 
@@ -108,10 +109,20 @@ function getProjectByUser(url, idUser){
 
 function queryString(parameter){
     let loc = location.search.substring(1, location.search.length)
+    // console.log(loc)
     // let param_value = false;
-    let params = loc.split("=");
-    let value = params[1];
-    return value
+    let params = loc.split("?");
+    // console.log(params.length);
+    if(params.length == 1 ){
+        var user = params[0].split("=")
+    }else{
+        var user = params[0].split("=")
+        var project = params[1].split("=")
+    }
+    // console.log(project);
+    if(parameter === "id") return user[1]
+    if(parameter === "idProject") return project[1]
+    
 }
 
 

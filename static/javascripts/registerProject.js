@@ -45,13 +45,13 @@ function ListProjectsByUser(){
     // console.log(jsonObject)
     
     for(let i=0; i< jsonObject.length;i++){
-        console.log(id)
+        console.log(jsonObject[i].id)
         project.innerHTML += `
             <div class="col-sm-4">
             
                 <div class="aw-box">
                     <div class="aw-box__icon">
-                        <a  href="cadastro-tech.html?id=${id}"><i class="ph-plus-circle"></i></a>
+                        <a  href="cadastro-tech.html?id=${id}?idProject=${jsonObject[i].id}"><i class="ph-plus-circle"></i></a>
                     </div>
                     
                     
@@ -72,8 +72,6 @@ function ListProjectsByUser(){
             </div>
             `
     }
-
-    
 }
 
 ListProjectsByUser()
