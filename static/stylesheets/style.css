@@ -61,3 +61,18 @@
 .aw-box__title{
     text-decoration: none;
 }
+
+.aw-graph-box__title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.aw-graph-box__no-data{
+    position: static;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    /* justify-content: center; */
+    color: #777;
+    font-size: 2rem;
+}

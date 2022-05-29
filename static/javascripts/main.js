@@ -113,6 +113,14 @@ function getProjectByUser(url, idUser){
     return request.responseText
 }
 
+function getProjectById(url, id){
+    let request = new XMLHttpRequest();
+    request.open("GET", `${url}${id}`, false);
+    request.send();
+
+    return request.responseText
+}
+
 // getProjectByUser(urlProject, 2)
 
 function queryString(parameter){
