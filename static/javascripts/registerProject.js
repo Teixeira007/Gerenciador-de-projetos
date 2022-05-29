@@ -40,27 +40,40 @@ btnSaveProject.addEventListener("click", function(event){
 })
 
 function ListProjectsByUser(){
-    let id = Number(queryString('id'));
+    const id = Number(queryString('id'));
     const jsonObject = JSON.parse(getProjectByUser(urlProject, id));
-    console.log(jsonObject)
+    // console.log(jsonObject)
+    
     for(let i=0; i< jsonObject.length;i++){
-        
+        console.log(id)
         project.innerHTML += `
             <div class="col-sm-4">
             
                 <div class="aw-box">
                     <div class="aw-box__icon">
+                        <a  href="cadastro-tech.html?id=${id}"><i class="ph-plus-circle"></i></a>
+                    </div>
+                    
+                    
+                    <div class="aw-box__value projects-name">
+                        
+                       
+                    <!---<button type="button" class="btn btn-success btn-add">
+                             <i class="ph-plus-circle"></i>
                     <img src="/static/icons/icons8-grupo-de-projectos-48.png"/>
 
+                        </button>-->
+                        ${jsonObject[i].name}
                     </div>
-                    <div class="aw-box__value projects-name">${jsonObject[i].name}</div>
-                    <div class="aw-box__title"></div>
+                    
+                    <div class="aw-box__title">5 horas 37 min</div>
                 </div>
             
             </div>
             `
     }
 
+    
 }
 
 ListProjectsByUser()
