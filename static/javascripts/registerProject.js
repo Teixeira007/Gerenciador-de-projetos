@@ -45,11 +45,11 @@ function ListProjectsByUser(){
     // console.log(jsonObject)
     
     for(let i=0; i< jsonObject.length;i++){
-        console.log(jsonObject[i].id)
+        // console.log(jsonObject[i].id)
         project.innerHTML += `
             <div class="col-sm-4">
             
-                <div class="aw-box">
+                <div class="aw-box project">
                     <div class="aw-box__icon">
                         <a  href="cadastro-tech.html?id=${id}?idProject=${jsonObject[i].id}"><i class="ph-plus-circle"></i></a>
                     </div>
@@ -58,12 +58,8 @@ function ListProjectsByUser(){
                     <div class="aw-box__value projects-name">
                         
                        
-                    <!---<button type="button" class="btn btn-success btn-add">
-                             <i class="ph-plus-circle"></i>
-                    <img src="/static/icons/icons8-grupo-de-projectos-48.png"/>
-
-                        </button>-->
-                        ${jsonObject[i].name}
+                    
+                        <a href="dashboard-technologias.html?id=${id}?idProject=${jsonObject[i].id}">${jsonObject[i].name}</a>
                     </div>
                     
                     <div class="aw-box__title">5 horas 37 min</div>

@@ -25,6 +25,9 @@
 /* .aw-box__icon:hover{
     background-color: ;
 } */
+*{
+    text-decoration: none;
+}
 .col-sm-4{
     cursor:pointer;
     max-width: 100%;
@@ -50,4 +53,11 @@
     color: aqua;
     transition: color;
     transition-duration: 500ms;
+}
+.projects-name a{
+    text-decoration: none;
+}
+
+.aw-box__title{
+    text-decoration: none;
 }

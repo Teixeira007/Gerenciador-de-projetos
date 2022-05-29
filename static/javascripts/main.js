@@ -96,6 +96,14 @@ function postTechnology(url, name, idUser){
     return request.responseText
 }
 
+function getTechnology(url, idProject){
+    let request = new XMLHttpRequest();
+    request.open("GET", `${url}${idProject}/technologies`, false);
+    request.send();
+
+    return request.responseText
+}
+
 function getProjectByUser(url, idUser){
     let request = new XMLHttpRequest();
     request.open("GET", `${url}user/${idUser}`, false);
