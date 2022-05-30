@@ -76,3 +76,17 @@
     color: #777;
     font-size: 2rem;
 }
+
+.btns-time{
+    display: flex;
+    padding-top: 1rem;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.btns-time i{
+    font-size: 3rem;
+}
+.btns-time a{
+    text-decoration: none;
+}

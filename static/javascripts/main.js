@@ -149,6 +149,16 @@ function finalizar(url, idProject){
     return request.responseText
 }
 
+function inicializar(url, idProject){
+    let request = new XMLHttpRequest();
+    request.open("GET", `${url}inicializar/${idProject}`, false);
+    request.send();
+
+    // console.log(request.responseText)
+    return request.responseText
+}
+
+// inicializar(urlProject, 2)
 // console.log(finalizar(urlProject, 5));
 // criar()
 

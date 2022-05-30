@@ -1,6 +1,9 @@
 const title = document.querySelector('.aw-graph-box__header')
 const technologies = document.querySelector('.aw-graph-box__no-data')
 
+const btnInit = document.querySelector('.btn-init')
+const btnFinal = document.querySelector('.btn-final')
+
 function ListTechnology(){
     let idProject = queryString("idProject")
     var objectTech = JSON.parse(getTechnology(urlProject, idProject))
@@ -25,6 +28,24 @@ function ListTechnology(){
     
 }
 
+btnInit.addEventListener('click', function(event){
+    let idProject = queryString("idProject")
+    let time = inicializar(urlProject, idProject)
+    time = JSON.parse(time)
+    console.log(time)
+    time = time.dateInit
+    console.log(time)
+    time = Date.parse(time)
+    console.log(time)
+    
+
+
+})
+
+btnFinal.addEventListener('click', function(event){
+    let idProject = queryString("idProject")
+    finalizar(urlProject, idProject)
+})
 
 
 ListTechnology()

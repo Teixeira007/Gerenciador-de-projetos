@@ -5,7 +5,11 @@ const btnAddtechnology = document.querySelector('.btn-submit-add-technology')
 const btnSaveProject = document.querySelector('.btn-submit-save-project')
 
 const project = document.querySelector('.project')
+const btns = document.querySelector('.btns')
 const wrapper = document.querySelector('.alert')
+
+const initBtn = document.querySelector('.init-btn')
+
 
 
 btnSaveProject.addEventListener("click", function(event){
@@ -42,23 +46,9 @@ btnSaveProject.addEventListener("click", function(event){
 function ListProjectsByUser(){
     const id = Number(queryString('id'));
     const jsonObject = JSON.parse(getProjectByUser(urlProject, id));
-    // console.log(jsonObject)
-    let dataString = jsonObject[0].dateInit;
-    let dateFinal = JSON.parse(finalizar(urlProject, 6))
-    
-    console.log(dataString)
-    console.log(dateFinal.dateFinal)
-    
-    //intervalo de tempo em milesegundos
-    let intervalDate = Date.parse(dateFinal.dateFinal) - Date.parse(dataString);
-
-    //valor de 1 hora em milesegundo
-    let miliseconds = 2.7777777777777776e-7
-    //valor do intervalo de tempo em horas
-    let hours = intervalDate * (miliseconds)
-    console.log(hours)
     
     for(let i=0; i< jsonObject.length;i++){
+        // console.log(jsonObject[i]);
         project.innerHTML += `
             <div class="col-sm-4">
             
@@ -75,20 +65,74 @@ function ListProjectsByUser(){
                         <a href="dashboard-technologias.html?id=${id}?idProject=${jsonObject[i].id}">${jsonObject[i].name}</a>
                     </div>
                     
-                    <div class="aw-box__title">5 horas 37 min</div>
-                </div>
+                    <div class="aw-box__title">${intervalTemp(jsonObject[i], jsonObject[i].id)}</div>
+                        
+                    </div>
             
             </div>
             `
+       
     }
 }
 
-function formatData(dateNow){
 
-    let dateFormat = `${dateNow.getFullYear()}-${zeroLeft(dateNow.getMonth()+1)}-${zeroLeft(dateNow.getDate())}T${zeroLeft(dateNow.getHours())}:${zeroLeft(dateNow.getMinutes())}:${zeroLeft(dateNow.getSeconds())}-03:00`
-    
-    return dateFormat
+function intervalTemp(jsonObject, idProject){
+        console.log(jsonObject)
+        if(typeof(jsonObject.dateInit) !== "string"){
+            return formatData(0)
+        }
+        if(typeof(jsonObject.dateFinal) !== 'string'){
+
+            let dateFinal = new Date() 
+            dateFinal = `${dateFinal.getFullYear()}-${zeroLeft(dateFinal.getMonth()+1)}-${zeroLeft(dateFinal.getDate())}T${zeroLeft(dateFinal.getHours())}:${zeroLeft(dateFinal.getMinutes())}:${zeroLeft(dateFinal.getSeconds())}-03:00`
+            let intervalDate = Date.parse(dateFinal) - Date.parse(jsonObject.dateInit);
+            let miliseconds = 2.7777777777777776e-7
+            let hours = intervalDate * (miliseconds)
+            return formatData(hours)
+        }
+        if(typeof(jsonObject.dateInit) === "string" && typeof(jsonObject.dateFinal) === "string"){
+
+            let dataString = jsonObject.dateInit;
+            let dateFinal = jsonObject.dateFinal;
+            console.log(dataString)
+            let intervalDate = Date.parse(dateFinal) - Date.parse(dataString);
+            let miliseconds = 2.7777777777777776e-7
+            let hours = intervalDate * (miliseconds)
+            return formatData(hours)
+
+        }
+        
 }
+
+function formatData(time){
+    time = time.toString()
+    if(time >= 1){
+        let result = time.split('.')
+        let hours = result[0]
+        let minutes = result[1] 
+        minutes = minutes.substring(0,2)
+        if(minutes > 60) {
+            hours++
+            minutes = minutes - 60
+        }
+        return `${hours} hrs ${minutes} mins `
+    }
+
+    // console.log(hours)
+    // let dateFormat = `${dateNow.getFullYear()}-${zeroLeft(dateNow.getMonth()+1)}-${zeroLeft(dateNow.getDate())}T${zeroLeft(dateNow.getHours())}:${zeroLeft(dateNow.getMinutes())}:${zeroLeft(dateNow.getSeconds())}-03:00`
+    let hours = 0
+    if(time == 0){
+        minutes = 0
+    }else{
+        var minutes = time * 60
+        minutes = minutes.toString()
+        minutes = minutes.substring(0,2)
+    }
+    
+
+    return `${hours} hrs ${minutes} mins `
+}
+
 
 function zeroLeft(temp){
     return temp < 10 ? `0${temp}` : `${temp}`
