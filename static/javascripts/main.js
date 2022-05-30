@@ -141,7 +141,15 @@ function queryString(parameter){
     
 }
 
+function finalizar(url, idProject){
+    let request = new XMLHttpRequest();
+    request.open("GET", `${url}finalizar/${idProject}`, false);
+    request.send();
 
+    return request.responseText
+}
+
+// console.log(finalizar(urlProject, 5));
 // criar()
 
 // function criarLinha(user){
