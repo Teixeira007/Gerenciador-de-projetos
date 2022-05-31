@@ -3,6 +3,7 @@ const technologies = document.querySelector('.aw-graph-box__no-data')
 
 const btnInit = document.querySelector('.btn-init')
 const btnFinal = document.querySelector('.btn-final')
+const btnPause = document.querySelector('.btn-pause')
 
 const wrapper = document.querySelector('.wrapper')
 
@@ -80,6 +81,7 @@ btnFinal.addEventListener('click', function(event){
         }
     
 })
+
 
 
 ListTechnology()

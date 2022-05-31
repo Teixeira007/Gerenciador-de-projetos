@@ -65,7 +65,7 @@ function ListProjectsByUser(){
                         <a href="dashboard-technologias.html?id=${id}?idProject=${jsonObject[i].id}">${jsonObject[i].name}</a>
                     </div>
                     
-                    <div class="aw-box__title">${intervalTemp(jsonObject[i], jsonObject[i].id)}</div>
+                    <div class="aw-box__title">${intervalTemp(jsonObject[i])}</div>
                         
                     </div>
             
@@ -76,8 +76,9 @@ function ListProjectsByUser(){
 }
 
 
-function intervalTemp(jsonObject, idProject){
-        console.log(jsonObject)
+function intervalTemp(jsonObject){
+        console.log(click)
+        // console.log(jsonObject)
         if(typeof(jsonObject.dateInit) !== "string"){
             return formatData(0)
         }

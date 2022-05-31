@@ -1,6 +1,8 @@
 const urlUser = "http://localhost:8080/users/";
 const urlProject = "http://localhost:8080/projects/";
 
+let click = 0
+
 function getUser(url){
     let request = new XMLHttpRequest()
     request.open("GET", url, false)
@@ -180,7 +182,7 @@ function inicializar(url, idProject){
 
     let objectProject = getProjectById(url, idProject)
     objectProject = JSON.parse(objectProject)
-    if(typeof(objectProject.dateFinal) !== "string" ){
+    if(typeof(objectProject.dateInit) !== "string" ){
 
         let request = new XMLHttpRequest();
         try{
@@ -201,6 +203,8 @@ function inicializar(url, idProject){
         throw new error;
     }
 }
+
+
 
 // inicializar(urlProject, 2)
 // console.log(finalizar(urlProject, 5));
