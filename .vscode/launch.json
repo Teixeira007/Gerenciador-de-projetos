@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GerenciadorDeProjetosApplication<gerenciador-de-projetos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.home.gerenciadordeprojetos.GerenciadorDeProjetosApplication",
+            "projectName": "gerenciador-de-projetos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
