@@ -87,9 +87,13 @@ function postTechnology(url, name, idUser){
         request.send(JSON.stringify(params))
 
         let objectErr = JSON.parse(request.response);
-        if(request.status != 201) throw objectErr;
+        // console.log(objectErr)
+        // console.log(request)
+        // console.log(request.status)
+        if(request.status != 201 && request.status != 200) throw objectErr;
 
     }catch(objectErr){
+        console.log(JSON.parse(request.response))
         throw JSON.parse(request.response)
     }
 
@@ -142,20 +146,60 @@ function queryString(parameter){
 }
 
 function finalizar(url, idProject){
-    let request = new XMLHttpRequest();
-    request.open("GET", `${url}finalizar/${idProject}`, false);
-    request.send();
 
-    return request.responseText
+    let objectProject = getProjectById(url, idProject)
+    objectProject = JSON.parse(objectProject)
+    if(typeof(objectProject.dateFinal) !== "string" ){
+        let request = new XMLHttpRequest();
+
+        try{
+            request.open("GET", `${url}finalizar/${idProject}`, false);
+            request.send();
+
+            if(request.status != 201 && request.status != 200) throw objectErr;
+
+        }catch(objectErr){
+
+            console.log(JSON.parse(request.response))
+            throw JSON.parse(request.response)
+
+        }
+
+        return request.responseText
+
+    }else{
+        throw new error;
+    }
+
+    
+
+    
 }
 
 function inicializar(url, idProject){
-    let request = new XMLHttpRequest();
-    request.open("GET", `${url}inicializar/${idProject}`, false);
-    request.send();
 
-    // console.log(request.responseText)
-    return request.responseText
+    let objectProject = getProjectById(url, idProject)
+    objectProject = JSON.parse(objectProject)
+    if(typeof(objectProject.dateFinal) !== "string" ){
+
+        let request = new XMLHttpRequest();
+        try{
+            request.open("GET", `${url}inicializar/${idProject}`, false);
+            request.send();
+
+            if(request.status != 201 && request.status != 200) throw objectErr;
+
+        }catch(objectErr){
+            console.log(JSON.parse(request.response))
+            throw JSON.parse(request.response)
+        }
+        
+
+        // console.log(request.responseText)
+        return request.responseText
+    }else{
+        throw new error;
+    }
 }
 
 // inicializar(urlProject, 2)

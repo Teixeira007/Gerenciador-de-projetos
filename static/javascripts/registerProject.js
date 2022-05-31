@@ -48,7 +48,7 @@ function ListProjectsByUser(){
     const jsonObject = JSON.parse(getProjectByUser(urlProject, id));
     
     for(let i=0; i< jsonObject.length;i++){
-        // console.log(jsonObject[i]);
+        console.log(jsonObject[i]);
         project.innerHTML += `
             <div class="col-sm-4">
             
