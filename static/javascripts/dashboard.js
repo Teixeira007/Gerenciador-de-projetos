@@ -6,3 +6,6 @@ objectUser = JSON.parse(objectUser)
 nameUser.innerHTML = `
     <span class="aw-logged-user__name">${objectUser.name}</span>
 `
+
+// const link =  document.querySelector('#link-dash')
+// link.href = "dashboard.html?id=${objectUser.id}"

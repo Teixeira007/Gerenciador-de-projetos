@@ -7,6 +7,8 @@ const btnPause = document.querySelector('.btn-pause')
 
 const wrapper = document.querySelector('.wrapper')
 
+
+
 function ListTechnology(){
     let idProject = queryString("idProject")
     var objectTech = JSON.parse(getTechnology(urlProject, idProject))

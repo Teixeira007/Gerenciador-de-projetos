@@ -1,0 +1,7 @@
+node_modules/
+cypress.config.js
+package-lock.json
+package.json
+cypress/fixtures
+cypress/downloads
+cypress/support/commands.js

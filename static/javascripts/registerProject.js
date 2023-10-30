@@ -14,6 +14,9 @@ const initBtn = document.querySelector('.init-btn')
 
 btnSaveProject.addEventListener("click", function(event){
     event.preventDefault()
+    
+const link =  document.querySelector('#link-dash')
+link.href = "dashboard.html?id=${objectUser.id}"
     // const urlTechnology = `${urlProject}`
     let id = Number(queryString('id'));
     // console.log(id)
